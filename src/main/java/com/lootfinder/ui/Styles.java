@@ -62,10 +62,19 @@ final class Styles
 
 	static JLabel label(String text, Font font, Color color)
 	{
-		JLabel label = new JLabel(text);
+		JLabel label = new JLabel(shown(text));
 		label.setFont(font);
 		label.setForeground(color);
 		return label;
+	}
+
+	/**
+	 * The RuneScape small font has no ≈ or en dash, so those draw as empty boxes.
+	 * ~ and a hyphen are in the font.
+	 */
+	static String shown(String text)
+	{
+		return text.replace('\u2248', '~').replace('\u2013', '-');
 	}
 
 	/** A single wiki rate, e.g. "1/512" or "0.195%". Word rates ("Rare") are shown as-is. */

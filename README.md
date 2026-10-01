@@ -9,7 +9,7 @@ chest, minigame and skilling activity that gives it, ranked by drop rate. Drop r
 - **Items tab:** search for an item and get every source, most likely first. Sources with several
   drop tables (e.g. Abyssal demon's standard and Wilderness Slayer Cave tables) are listed
   separately. Where a table rolls more than once per kill or lists an item more than once, the row
-  shows the combined chance per kill (marked ≈).
+  shows the combined chance per kill (marked ~).
 - **Monsters tab:** search for a monster, chest or activity and see its full drop table, grouped
   by rarity (Always, Common, Uncommon, Rare, Very rare) with rare drop table items in their own
   group. Pages with several drop tables get a picker.
@@ -53,7 +53,7 @@ To log in to the dev client with a Jagex account, follow
 1. Open the Loot Finder panel (magnifying glass over a loot bag in the sidebar). On first run it
    should say it's downloading drop data, then show the search hint.
 2. **Items tab:** type `aby`. Suggestions should appear under the box. Press Down to highlight
-   "Abyssal whip" and press Enter. Expect Unsired at the top, then Greater abyssal demon (≈1/171,
+   "Abyssal whip" and press Enter. Expect Unsired at the top, then Greater abyssal demon (~1/171,
    because it rolls 3 times), then both Abyssal demon tables at 1/512.
 3. Click the Abyssal demon row. It should switch to the Monsters tab on the right drop table.
 4. Use the drop table picker to switch between Standard, Catacombs of Kourend and Wilderness Slayer
