@@ -6,6 +6,9 @@ chest, minigame and skilling activity that gives it, ranked by drop rate. Drop r
 
 ## Features
 
+- **Right-click lookup:** right-click a monster you can attack or pickpocket and choose "Lookup
+  drops" to open its drop table. It only appears for monsters that have a drop table. In the
+  plugin's settings, set "Right-click lookup" to Always, Hold Shift or Never.
 - **Items tab:** search for an item and get every source, most likely first. Sources with several
   drop tables (e.g. Abyssal demon's standard and Wilderness Slayer Cave tables) are listed
   separately. Where a table rolls more than once per kill or lists an item more than once, the row
@@ -65,8 +68,13 @@ To log in to the dev client with a Jagex account, follow
 7. Change "Drop rate format" in the plugin settings to Percent. Rates should update without a
    restart.
 8. Restart the client. Results should appear immediately without downloading again.
-9. Edge cases: click outside the search box while suggestions are open, switch tabs while
-   suggestions are open, and search for something with no drops.
+9. **Right-click lookup:** once the data has loaded, right-click a Goblin or Cow. "Lookup drops"
+   should appear below Attack, and clicking it should open the Monsters tab on its drop table.
+   Left-clicking should still attack. Set "Right-click lookup" to Hold Shift (entry only while
+   Shift is held) and Never (no entry), then back to Always. Bankers and other NPCs you can't
+   attack or pickpocket should get no entry.
+10. Edge cases: click outside the search box while suggestions are open, switch tabs while
+    suggestions are open, and search for something with no drops.
 
 ## Project layout
 
@@ -74,6 +82,7 @@ To log in to the dev client with a Jagex account, follow
 src/main/java/com/lootfinder/
   LootFinderPlugin.java      plugin entry point, wires up the panel and data service
   LootFinderConfig.java      settings
+  LookupMode.java            when the right-click entry shows (Always, Hold Shift, Never)
   data/
     WikiDropClient.java      pages through the wiki Bucket API
     BucketParser.java        turns API responses into DropRow objects
@@ -103,6 +112,9 @@ See [ROADMAP.md](ROADMAP.md) for features that are planned but not built yet.
 
 Before submitting, update `author` in `runelite-plugin.properties` and the copyright line in
 `LICENSE` if you want a different name there.
+
+The name `loot-finder` is already taken on the hub by an unrelated bank filter plugin, so rename
+this plugin first. See [ROADMAP.md](ROADMAP.md).
 
 ## License
 

@@ -10,6 +10,7 @@ public interface LootFinderConfig extends Config
 	String GROUP = "lootfinder";
 	String KEY_INCLUDE_NON_COMBAT = "includeNonCombat";
 	String KEY_RARITY_FORMAT = "rarityFormat";
+	String KEY_LOOKUP_MODE = "lookupMode";
 
 	@ConfigItem(
 		keyName = KEY_INCLUDE_NON_COMBAT,
@@ -31,5 +32,16 @@ public interface LootFinderConfig extends Config
 	default RarityFormat rarityFormat()
 	{
 		return RarityFormat.FRACTION;
+	}
+
+	@ConfigItem(
+		keyName = KEY_LOOKUP_MODE,
+		name = "Right-click lookup",
+		description = "When to add a \"Lookup drops\" entry to the right-click menu of monsters you can attack or pickpocket",
+		position = 3
+	)
+	default LookupMode lookupMode()
+	{
+		return LookupMode.ALWAYS;
 	}
 }

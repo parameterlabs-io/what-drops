@@ -168,6 +168,12 @@ public class LootFinderPanel extends PluginPanel implements DropDataService.List
 		monstersView.refresh();
 	}
 
+	/** Shows a monster's drop table on the Monsters tab. Call on the Swing thread. */
+	public void lookupNpc(String npcName)
+	{
+		openSource(npcName, null);
+	}
+
 	void openItem(String item)
 	{
 		tabs.select(itemsTab);

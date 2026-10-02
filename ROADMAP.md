@@ -25,14 +25,15 @@ on the item list, and separate free and members' drop tables.
 ## Planned, in order
 
 ### 1. Right-click "Lookup drops" on NPCs
-This is how most Loot Lookup users reach it, so without it nobody has a reason to switch.
-- Hook `MenuEntryAdded` for attackable and pickpocketable NPCs and add a client-side entry. It must
-  not send anything to the server, which is a Plugin Hub rule.
-- Get the NPC name on the client thread, match it to a drop page (`DropIndex`), then call
-  `LootFinderPanel.openSource(page, variant)` on the Swing thread and open the panel. NPCs with
-  several drop tables already get the table picker.
-- Config toggle for when the entry shows: always, hold Shift, or never. Optionally a list of NPCs to
-  exclude.
+Implemented and tested in the dev client on 2026-10-02 with no issues found. This is how most Loot
+Lookup users reach it, so without it nobody has a reason to switch.
+- `LootFinderPlugin.onMenuEntryAdded` hooks the Examine entry (one per NPC) and adds a client-side
+  `MenuAction.RUNELITE` entry for NPCs that have an Attack or Pickpocket option and a page in the
+  drop index. It sends nothing to the server, which is a Plugin Hub rule.
+- Clicking it calls `LootFinderPanel.lookupNpc(page)` on the Swing thread and opens the panel. NPCs
+  with several drop tables open on the first one and get the table picker.
+- "Right-click lookup" setting: Always (default), Hold Shift or Never.
+- Not done: a list of NPCs to exclude, and picking the table variant from the NPC's variant.
 
 ### 2. Grand Exchange prices on drops
 Show each drop's value next to its rate in the Monsters tab.
