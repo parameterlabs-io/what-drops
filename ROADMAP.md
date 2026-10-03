@@ -27,10 +27,10 @@ on the item list, and separate free and members' drop tables.
 ### 1. Right-click "Lookup drops" on NPCs
 Implemented and tested in the dev client on 2026-10-02 with no issues found. This is how most Loot
 Lookup users reach it, so without it nobody has a reason to switch.
-- `LootFinderPlugin.onMenuEntryAdded` hooks the Examine entry (one per NPC) and adds a client-side
+- `WhatDropsPlugin.onMenuEntryAdded` hooks the Examine entry (one per NPC) and adds a client-side
   `MenuAction.RUNELITE` entry for NPCs that have an Attack or Pickpocket option and a page in the
   drop index. It sends nothing to the server, which is a Plugin Hub rule.
-- Clicking it calls `LootFinderPanel.lookupNpc(page)` on the Swing thread and opens the panel. NPCs
+- Clicking it calls `WhatDropsPanel.lookupNpc(page)` on the Swing thread and opens the panel. NPCs
   with several drop tables open on the first one and get the table picker.
 - "Right-click lookup" setting: Always (default), Hold Shift or Never.
 - Not done: a list of NPCs to exclude, and picking the table variant from the NPC's variant.
@@ -65,7 +65,7 @@ the Items tab for that item. Item Sources already offers this, so it is expected
 selling point.
 - Same approach as the NPC entry: client-side only. Get the name with
   `ItemManager.getItemComposition(id).getName()` on the client thread, then call
-  `LootFinderPanel.openItem(name)` on the Swing thread and open the panel.
+  `WhatDropsPanel.openItem(name)` on the Swing thread and open the panel.
 - Same always / Shift / off toggle.
 
 ### Time to drop
@@ -94,14 +94,6 @@ Put 2–3 monsters side by side, or rank every monster matching a filter (e.g. "
   keep load on the wiki low.
 - **Wiki links open the page, not the section.** Linking straight to the drops section or the
   item's "Item sources" section would be nicer.
-
-## Before submitting to the Plugin Hub
-
-- **Rename the plugin.** `plugins/loot-finder` and the display name "Loot Finder" are already taken
-  by [LootFinder](https://github.com/austin-97/LootFinder), a bank filter built on Loot Tracker.
-  Pick a new name and update `displayName` in `runelite-plugin.properties`, the Gradle project name,
-  the config group and the `internalName` in the plugin descriptor. Renaming the config group needs
-  a migration if anyone has already run the plugin.
 
 ## Deliberately not planned
 

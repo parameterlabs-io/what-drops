@@ -1,4 +1,4 @@
-# Loot Finder
+# What Drops
 
 A RuneLite plugin that answers "what drops this?" Search for any item and see every monster,
 chest, minigame and skilling activity that gives it, ranked by drop rate. Drop rates come from the
@@ -32,7 +32,7 @@ The plugin reads the wiki's structured drop data (the `dropsline` bucket of its
 That's what makes reverse lookup possible, and it doesn't break when the wiki's page layout changes.
 
 - About 40,000 rows, downloaded in 8 requests (under 1 MB gzipped in total).
-- Saved to `.runelite/plugin-data/loot-finder/` and refreshed once a week. Saved data is used
+- Saved to `.runelite/plugin-data/what-drops/` and refreshed once a week. Saved data is used
   straight away on startup and kept if a refresh fails.
 - The request goes only to the OSRS Wiki and contains no player information.
 
@@ -44,7 +44,7 @@ The panel credits the wiki in its footer.
 You need JDK 11 or newer.
 
 ```bash
-./gradlew run    # starts a RuneLite dev client with Loot Finder loaded
+./gradlew run    # starts a RuneLite dev client with What Drops loaded
 ./gradlew test   # unit tests for the data layer
 ```
 
@@ -53,7 +53,7 @@ To log in to the dev client with a Jagex account, follow
 
 ### What to test in-game
 
-1. Open the Loot Finder panel (magnifying glass over a loot bag in the sidebar). On first run it
+1. Open the What Drops panel (magnifying glass over a loot bag in the sidebar). On first run it
    should say it's downloading drop data, then show the search hint.
 2. **Items tab:** type `aby`. Suggestions should appear under the box. Press Down to highlight
    "Abyssal whip" and press Enter. Expect Unsired at the top, then Greater abyssal demon (~1/171,
@@ -79,9 +79,9 @@ To log in to the dev client with a Jagex account, follow
 ## Project layout
 
 ```
-src/main/java/com/lootfinder/
-  LootFinderPlugin.java      plugin entry point, wires up the panel and data service
-  LootFinderConfig.java      settings
+src/main/java/com/whatdrops/
+  WhatDropsPlugin.java       plugin entry point, wires up the panel and data service
+  WhatDropsConfig.java       settings
   LookupMode.java            when the right-click entry shows (Always, Hold Shift, Never)
   data/
     WikiDropClient.java      pages through the wiki Bucket API
@@ -91,7 +91,7 @@ src/main/java/com/lootfinder/
     DropIndex.java           item → sources and page → drops lookups, typeahead
     Rarity.java              parses "1/512", "4/128", "1/5,000", "Always", ...
   ui/
-    LootFinderPanel.java     side panel with Items and Monsters tabs
+    WhatDropsPanel.java      side panel with Items and Monsters tabs
     ItemsView.java           reverse lookup
     MonstersView.java        drop table view
     TypeaheadField.java      search box with a suggestion list
@@ -103,19 +103,15 @@ See [ROADMAP.md](ROADMAP.md) for features that are planned but not built yet.
 
 1. Push this repo to GitHub.
 2. Fork [runelite/plugin-hub](https://github.com/runelite/plugin-hub) and add a file
-   `plugins/loot-finder` containing:
+   `plugins/what-drops` containing:
    ```
-   repository=https://github.com/<you>/loot-finder.git
+   repository=https://github.com/<you>/what-drops.git
    commit=<full commit hash>
    ```
 3. Open a pull request. The hub builds the plugin and a reviewer checks it.
 
 Before submitting, update `author` in `runelite-plugin.properties` and the copyright line in
 `LICENSE` if you want a different name there.
-
-The name `loot-finder` is already taken on the hub by an unrelated bank filter plugin, so rename
-this plugin first. See [ROADMAP.md](ROADMAP.md).
-
 ## License
 
 BSD 2-Clause. See [LICENSE](LICENSE).
